@@ -1,0 +1,16 @@
+<div class="login-container">
+  <h1>Login portail d'entreprise</h1>
+  <form class="login-container-form" [formGroup]="loginForm" (ngSubmit)="OnSubmitLogin()">
+
+    <mat-form-field>
+      <input matInput placeholder={{email}} type="email" formControlName="loginEmail">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder={{password}} type="password" formControlName="loginPassword">
+    </mat-form-field>
+
+    <button mat-flat-button [disabled]="loginForm.invalid">Connexion</button>
+
+  </form>
+</div>

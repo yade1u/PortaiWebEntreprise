@@ -1,0 +1,6 @@
+<div class="login-container">
+  <h1>Tous les utilisateurs</h1>
+  <div *ngFor="let utilisateur of users">
+    <app-fiche-utilisateur [user] = 'utilisateur' ></app-fiche-utilisateur>
+  </div>
+</div>
