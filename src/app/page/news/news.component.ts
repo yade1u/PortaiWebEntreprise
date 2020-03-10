@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Actualite } from 'src/app/interfaces/Actualite';
+import { AddDialogComponent } from '../dialogues/add-dialog/add-dialog.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FormulaireComponent } from 'src/app/shared/formulaire/formulaire.component';
 
 @Component({
   selector: 'app-news',
@@ -11,7 +14,10 @@ export class NewsComponent implements OnInit {
   @Input()
   actualite: Actualite;
 
-  constructor() { }
+  private addDialog: MatDialogRef<AddDialogComponent>;
+  dialogStatus = 'inactive';
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     /*this.actualite = {
@@ -23,5 +29,38 @@ export class NewsComponent implements OnInit {
   delete(actualite) {
 
   }
+
+  modif(actualite: Actualite) {
+    // this.actuService.ajouterActualite(actualite);
+    this.hideDialog();
+    /*this._http
+      .post(`${BASE_URL}/api/peoples/`, person)
+      .pipe(mergeMap(() => this._http.get(`${BASE_URL}/api/peoples/`)))
+      .subscribe((people: any[]) => {
+        this.people = people;
+        this.hideDialog();
+      });*/
+  }
+
+  showDialog(actualite: Actualite) {
+    this.dialogStatus = 'active';
+    this.addDialog = this.dialog.open(AddDialogComponent, {
+      width: '600px',
+      data: {isUpdateMode: true, actu: actualite}
+    });
+
+    this.addDialog.afterClosed().subscribe(actualite1 => {
+      this.dialogStatus = 'inactive';
+      if (actualite1) {
+        this.modif(actualite1);
+      }
+    });
+  }
+
+  hideDialog() {
+    this.dialogStatus = 'inactive';
+    this.addDialog.close();
+  }
+
 
 }
