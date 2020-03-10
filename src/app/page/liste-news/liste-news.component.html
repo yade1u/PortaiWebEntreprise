@@ -1,0 +1,9 @@
+<section>
+  <app-news *ngFor = "let actu of actualites" [actualite] = 'actu'></app-news>
+</section>
+
+<button (click)="showDialog()" *ngIf="dialogStatus == 'inactive'" mat-fab color="accent">
+  <i class="material-icons">add</i>
+</button>
+
+

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/interfaces/User';
-import { RoleUser } from 'src/app/interfaces/rolesUser';
+import { ListUsersService } from 'src/app/service/list-users.service';
 
 @Component({
   selector: 'app-fiche-utilisateur',
@@ -11,16 +11,17 @@ export class FicheUtilisateurComponent implements OnInit {
 
   @Input()
   user: User;
-  constructor() { }
+
+  constructor(private listUsersService: ListUsersService) {
+  }
 
   ngOnInit() {
-    this.user = {
-        nom: 'YADE',
-        prenom: 'Ahmadou',
-        adresseMail: 'ahmayade@gmail.com',
-        role: RoleUser.Admin,
-        motDePasse: 'ahmadou'
-    };
+    this.listUsersService.getUserConnecte().subscribe(
+      (utilisateur) => {
+        this.user = utilisateur;
+        console.log('User connecté dans Fiche utilisateur' + this.user);
+      }
+    );
   }
 
 }

@@ -1,0 +1,67 @@
+<mat-card class="mat-whiteframe-2dp">
+  <mat-card-title>
+    <span *ngIf="isUpdateMode">Modifier {{ model?.titre || '?' }}</span>
+    <span *ngIf="!isUpdateMode">Créer une actualité</span>
+  </mat-card-title>
+
+  <mat-card-content>
+    <form novalidate #f="ngForm">
+      <p *ngIf="isUpdateMode">
+        <mat-form-field>
+          <input [ngModel]="model.titre" matInput style="width:100%" placeholder="ID (disabled)" disabled name="id" />
+        </mat-form-field>
+      </p>
+
+
+      <p [class.errors]="titre.dirty && titre.invalid">
+        <mat-form-field>
+          <input
+            [(ngModel)]="model.titre"
+            matInput
+            placeholder="Titre"
+            minlength="2"
+            required
+            name="titre"
+            #titre="ngModel"
+          />
+        </mat-form-field>
+        <span *ngIf="titre.dirty && titre.errors?.required"><br />titre is required</span>
+        <span *ngIf="titre.dirty && titre.errors?.minlength"><br />titre is 2 chars min</span>
+      </p>
+
+      <p [class.errors]="dateActu.dirty && dateActu.invalid">
+        <mat-form-field>
+          <input
+            [(ngModel)]="model.dateActu"
+            matInput
+            placeholder="Date de l'actualité"
+            name="dateActu"
+            #dateActu="ngModel"
+          />
+        </mat-form-field>
+      </p>
+
+      <p [class.errors]="contenuHTML.dirty && contenuHTML.invalid">
+        <mat-form-field>
+          <textarea
+            [(ngModel)]="model.contenuHTML"
+            matInput
+            rows="20"
+            placeholder="contenu HTML"
+            minlength="2"
+            required
+            name="contenuHTML"
+            #contenuHTML="ngModel">
+          </textarea>
+        </mat-form-field>
+        <span *ngIf="contenuHTML.dirty && contenuHTML.errors?.required"><br />Contenu HTML is required</span>
+        <span *ngIf="contenuHTML.dirty && contenuHTML.errors?.minlength"><br />Date actu is 2 chars min</span>
+      </p>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button type="button" (click)="cancel()">Cancel</button>
+    <button mat-button color="primary" type="submit" (click)="submit()" [disabled]="!f.valid">Save</button>
+  </mat-card-actions>
+</mat-card>

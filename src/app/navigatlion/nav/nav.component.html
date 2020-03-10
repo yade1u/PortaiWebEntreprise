@@ -8,6 +8,7 @@
       <a mat-list-item routerLink="/dashboard" routerLinkActive="active">Fonctionnalités</a>
       <a mat-list-item routerLink="/fiche_utilisateur" routerLinkActive="active">Fiche Utilisateur</a>
       <a mat-list-item routerLink="/utilisateurs" routerLinkActive="active">Tous les utilisateurs</a>
+      <a mat-list-item routerLink="/actualites" routerLinkActive="active">Actualités</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -20,7 +21,11 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>projet Portail Web</span>
+
+        <ul>
+          <li><a>Entreprise YADE AND CO</a></li>
+          <li style="float:right"><a (click)="logout()"><mat-icon>highlight_off</mat-icon></a></li>
+        </ul>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

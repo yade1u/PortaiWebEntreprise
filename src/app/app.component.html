@@ -1,1 +1,10 @@
-<app-nav></app-nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div *ngIf="!(authService.userData | async)">
+        <app-login></app-login>
+      </div>
+      <app-nav *ngIf="authService.userData | async"></app-nav>
+    </div>
+  </div>
+</div>

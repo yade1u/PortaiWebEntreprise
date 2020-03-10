@@ -1,0 +1,36 @@
+
+<section>
+  <mat-card class="mat-whiteframe-2dp">
+    <mat-card-title-group>
+      <img mat-card-mat-image [src]="user.lien_photo" />
+      <mat-card-title>
+        <a href="#/people/1">
+          <span>{{ user.prenom }} {{ user.nom }}</span>
+        </a>
+      </mat-card-title>
+      <mat-card-subtitle>YADE and CO</mat-card-subtitle>
+      <mat-card-subtitle class="contact-info">
+        <mat-icon>email</mat-icon>
+        <a
+          href="mailto:Powers Blacks&lt;luannpowers@sfeir.com&gt;"
+          title="Send an email to Powers Blacks"
+          class="truncate"
+          >{{ user.email }}</a
+        >
+      </mat-card-subtitle>
+      <mat-card-subtitle class="contact-info">
+        <mat-icon>phone</mat-icon>
+        <a href="tel:+33688258827" title="Call Powers">{{ user.phone }}</a>
+      </mat-card-subtitle>
+      <mat-card-subtitle class="contact-info">
+        <mat-icon>account_circle</mat-icon>
+        <a href="rôle">{{ user.role }}</a>
+      </mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <div class="buttons-info">
+        <a mat-button title="Edit" [routerLink]="['/edit', user.email]"> <mat-icon>create</mat-icon> </a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

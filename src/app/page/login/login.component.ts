@@ -1,8 +1,9 @@
 
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthentificationService } from 'src/app/service/authentification.service';
 
 
 
@@ -13,48 +14,39 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  // userService: ListUsersService;
-  // loginUser = false;
+  loginForm: FormGroup;
+  errorMessage: string;
 
-  loginForm = this.fb.group({
-    loginEmail: ['', [Validators.required, Validators.email]],
-    loginPassword: ['', Validators.required],
-  });
-
-  @Input()
   email: string;
-
-  @Input()
   password: string;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+
+  constructor(private fb: FormBuilder,
+              private authService: AuthentificationService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.email = 'Saisissez votre email';
-    this.password = 'Saisissez votre mot de passe';
+    this.initForm();
   }
 
-  /*isLoggedIn(): boolean {
-    console.log('Je suis dans isloggedIn je retourne : ' + this.loginUser );
-    return this.loginUser;
-  }*/
+  initForm() {
+    this.loginForm = this.fb.group({
+      loginEmail: ['', [Validators.required, Validators.email]],
+      loginPassword: ['', Validators.required],
+    });
+  }
+
+  seConnecter() {
+    this.authService.signInUser(this.email, this.password);
+    this.email = '';
+    this.password = '';
+  }
 
   OnSubmitLogin() {
-    const mail: string = this.loginForm.get('loginEmail').value;
-    const mdp: string = this.loginForm.get('loginPassword').value;
-
-    /*(this.userService.getUSERS()).forEach(element => {
-      if (element.adresseMail === mail && element.motDePasse === mdp) {
-        this.loginUser = true;
-      }
-    });*/
-    /*console.log('Je suis avant le if' );
-    if (mail === 'ahmayade@gmail.com' && mdp === 'ahmadou') {
-      console.log('Je suis dans le if' );
-      this.loginUser = true;
-      this.router.navigate(['']);
-    }*/
-    this.router.navigate(['accueil']);
+    this.email = this.loginForm.get('loginEmail').value;
+    this.password = this.loginForm.get('loginPassword').value;
+    this.seConnecter();
+    console.log('Après connexion');
   }
 }
 

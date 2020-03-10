@@ -3,8 +3,8 @@ import { RoleUser } from './rolesUser';
 export interface User {
   nom: string;
   prenom: string;
-  adresseMail: string;
+  email: string;
+  phone: string;
   role: RoleUser;
-  lienPhoto?: URL;
-  motDePasse: string;
+  lien_photo?: URL;
 }

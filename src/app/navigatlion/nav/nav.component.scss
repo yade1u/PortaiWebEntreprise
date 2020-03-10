@@ -19,3 +19,29 @@
 a.active {
   color: red;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+li {
+  float: left;
+}
+
+li > a{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  float: left;
+  margin-right: 20px;
+}
+
+li > a:hover{
+  cursor: pointer;
+}
