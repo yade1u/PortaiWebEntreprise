@@ -14,14 +14,15 @@ import { AuthentificationService } from './authentification.service';
 })
 export class ListUsersService {
 
-  users: User[];
+  private users: Observable<User[]>;
   uid: string;
 
   constructor(private afs: AngularFirestore, private auth: AuthentificationService) {
+    this.users = this.afs.collection<User>('users').valueChanges();
   }
 
   public getAllUser(): Observable<User[]> {
-    return this.afs.collection<User>('users').valueChanges();
+    return this.users;
   }
 
   public getUserConnecte(): Observable<User> {
@@ -34,8 +35,9 @@ export class ListUsersService {
     // return this.afs.doc<User>('users/oSkcQoFhSJQ9LRYspyFAae2HaX42').valueChanges();
   }
 
-  public getUSERS(): User[] {
-    // this.getAllUser();
-    return this.users;
+  public editUser(user: User)
+  {
+    console.log("I am here");
   }
+
 }

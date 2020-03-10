@@ -80,7 +80,7 @@ import { UpdateComponent } from './update/update/update.component';
     AngularFireAuthGuardModule,
     MatDialogModule,
   ],
-  entryComponents: [AddDialogComponent],
+  entryComponents: [AddDialogComponent, DialogModifUserComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
