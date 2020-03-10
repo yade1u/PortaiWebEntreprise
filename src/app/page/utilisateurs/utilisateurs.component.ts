@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/interfaces/User';
 import { ListUsersService } from 'src/app/service/list-users.service';
 import { Utilisateur } from 'src/app/interfaces/Utilisateur';
+import { AddDialogComponent } from '../dialogues/add-dialog/add-dialog.component';
 
 @Component({
   selector: 'app-utilisateurs',
@@ -10,7 +11,6 @@ import { Utilisateur } from 'src/app/interfaces/Utilisateur';
 })
 export class UtilisateursComponent implements OnInit {
   users: User[];
-  // users: Utilisateur[];
 
   constructor(private listUsersService: ListUsersService) {
   }
@@ -22,7 +22,6 @@ export class UtilisateursComponent implements OnInit {
     this.listUsersService.getAllUser().subscribe(
       (utilisateurs) => {
         this.users = utilisateurs;
-        console.log(this.users);
       }
     );
   }
