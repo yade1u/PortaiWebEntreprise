@@ -20,4 +20,8 @@ export class NewsComponent implements OnInit {
     };*/
   }
 
+  delete(actualite) {
+
+  }
+
 }
