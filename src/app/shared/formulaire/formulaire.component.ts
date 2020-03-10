@@ -31,7 +31,6 @@ export class FormulaireComponent implements OnInit, OnChanges {
   ngOnChanges(record) {
     if (record.model && record.model.currentValue) {
       this.model = record.model.currentValue;
-      this.isUpdateMode = Boolean(this.model);
     }
   }
   cancel() {

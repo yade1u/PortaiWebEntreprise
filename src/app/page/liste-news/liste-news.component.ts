@@ -13,6 +13,7 @@ import { FormulaireComponent } from 'src/app/shared/formulaire/formulaire.compon
 export class ListeNewsComponent implements OnInit {
 
   actualites: Actualite[];
+  actualite: Actualite;
 
   private addDialog: MatDialogRef<AddDialogComponent>;
   dialogStatus = 'inactive';
@@ -20,6 +21,12 @@ export class ListeNewsComponent implements OnInit {
   constructor(private actuService: RecupeNewsService, public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.actualite = {
+      titre : '',
+      contenuHTML : ''
+
+    };
+
     this.actuService.getAllActualites().subscribe(
       (actus) => {
         this.actualites = actus;
@@ -40,11 +47,11 @@ export class ListeNewsComponent implements OnInit {
       });*/
   }
 
-  showDialog() {
+  showDialog(actual: Actualite) {
     this.dialogStatus = 'active';
     this.addDialog = this.dialog.open(AddDialogComponent, {
       width: '600px',
-      data: {isUpdateMode: false}
+      data: {isUpdateMode: false, actu: actual}
     });
 
     this.addDialog.afterClosed().subscribe(actualite => {

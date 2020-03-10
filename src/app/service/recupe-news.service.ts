@@ -9,20 +9,20 @@ import { Observable } from 'rxjs';
 })
 export class RecupeNewsService {
 
-  private itemsCollection: AngularFirestoreCollection<Actualite>;
+  // private itemsCollection: AngularFirestoreCollection<Actualite>;
   actualites: Actualite[];
 
   constructor(private afs: AngularFirestore, private auth: AuthentificationService) {
-    this.itemsCollection = afs.collection<Actualite>('actualites');
+    // this.itemsCollection = afs.collection<Actualite>('actualites');
   }
 
   public getAllActualites(): Observable<Actualite[]> {
-    return this.itemsCollection.valueChanges();
+    return this.afs.collection<Actualite>('actualites').valueChanges();
   }
 
   public ajouterActualite(actualite: Actualite) {
     const id = this.afs.createId();
-    this.itemsCollection.doc(id).set(actualite);
+    this.afs.collection<Actualite>('actualites').doc(id).set(actualite);
   }
 
 }
