@@ -5,7 +5,7 @@ import { Component, OnInit, Output, Input, EventEmitter, OnChanges } from '@angu
   templateUrl: './modifier-user.component.html',
   styleUrls: ['./modifier-user.component.scss']
 })
-export class ModifierUserComponent implements OnInit {
+export class ModifierUserComponent implements OnInit, OnChanges {
   @Input() model: any;
   isUpdateMode: boolean;
 
@@ -15,7 +15,7 @@ export class ModifierUserComponent implements OnInit {
   constructor() {
     this.submit$ = new EventEmitter();
     this.cancel$ = new EventEmitter();
-    this.model = { address: {} };
+    this.model = {  };
   }
 
   /**
@@ -30,15 +30,17 @@ export class ModifierUserComponent implements OnInit {
    */
   ngOnChanges(record) {
     if (record.model && record.model.currentValue) {
+      console.log(record.model.currentValue.payload.doc.data());
       this.model = record.model.currentValue;
-      this.isUpdateMode = Boolean(this.model);
+      this.isUpdateMode = true;
     }
   }
-  cancel() {
+
+  annuler() {
     this.cancel$.emit();
   }
 
-  submit() {
+  enregistrer() {
     this.submit$.emit(this.model);
   }
 

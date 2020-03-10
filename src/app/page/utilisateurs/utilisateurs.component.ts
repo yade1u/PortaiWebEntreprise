@@ -10,18 +10,15 @@ import { AddDialogComponent } from '../dialogues/add-dialog/add-dialog.component
   styleUrls: ['./utilisateurs.component.scss']
 })
 export class UtilisateursComponent implements OnInit {
-  users: User[];
+  users;
 
   constructor(private listUsersService: ListUsersService) {}
 
   ngOnInit() {
-    this.listUsersService.getAllUser().subscribe(
-      (utilisateurs) => {
-        this.users = utilisateurs;
-
-        console.log("ICICCI\n"+this.users);
-      }
-    );
+    this.getAllUser();
   }
 
+  getAllUser = () => this.listUsersService.getAllUser().subscribe(res => (this.users = res) );
+
 }
+

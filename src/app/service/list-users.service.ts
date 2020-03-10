@@ -19,23 +19,25 @@ export class ListUsersService {
 
   constructor(private afs: AngularFirestore, private auth: AuthentificationService) { }
 
-  public getAllUser(): Observable<User[]> {
-    return this.afs.collection<User>('users').valueChanges();
+  public getAllUser() {
+    return this.afs.collection('users').snapshotChanges();
   }
 
   public getUserConnecte(): Observable<User> {
     this.uid = this.auth.getIdUser();
-    // console.log('Je suis dans getUserConnecte uid = ' + this.uid);
-    /*this.afs.doc<User>('users/oSkcQoFhSJQ9LRYspyFAae2HaX42').collection<User>('users').valueChanges().subscribe(
-      util => console.log('Suis dans getUserConn user = ' + util)
-    );*/
     return this.afs.doc<User>('users/' + this.uid).valueChanges();
-    // return this.afs.doc<User>('users/oSkcQoFhSJQ9LRYspyFAae2HaX42').valueChanges();
   }
 
-  public editUser(user: User)
-  {
-    console.log("I am here");
+  public editUser(user) {
+    return this.afs.collection('users').doc(user.payload.doc.id).set( {
+                                                                        email: user.payload.doc.data().email,
+                                                                        nom: user.payload.doc.data().nom,
+                                                                        prenom: user.payload.doc.data().prenom,
+                                                                        phone: user.payload.doc.data().phone,
+                                                                        role: user.payload.doc.data().role
+                                                                      },
+                                                                      { merge: true}
+                                                                    );
   }
 
 }

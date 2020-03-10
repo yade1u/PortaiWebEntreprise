@@ -2,10 +2,10 @@
 <section>
   <mat-card class="mat-whiteframe-2dp">
     <mat-card-title-group>
-      <img mat-card-mat-image [src]="user.lien_photo" />
+      <img mat-card-mat-image [src]="user.payload.doc.data().lien_photo" />
       <mat-card-title>
         <a href="#/people/1">
-          <span>{{ user.prenom }} {{ user.nom }}</span>
+          <span>{{ user.prenom }} {{ user.payload.doc.data().nom }}</span>
         </a>
       </mat-card-title>
       <mat-card-subtitle>YADE and CO</mat-card-subtitle>
@@ -15,16 +15,16 @@
           href="mailto:Powers Blacks&lt;luannpowers@sfeir.com&gt;"
           title="Send an email to Powers Blacks"
           class="truncate"
-          >{{ user.email }}</a
+          >{{ user.payload.doc.data().email }}</a
         >
       </mat-card-subtitle>
       <mat-card-subtitle class="contact-info">
         <mat-icon>phone</mat-icon>
-        <a href="tel:+33688258827" title="Call Powers">{{ user.phone }}</a>
+        <a href="tel:+33688258827" title="Call Powers">{{ user.payload.doc.data().phone }}</a>
       </mat-card-subtitle>
       <mat-card-subtitle class="contact-info">
         <mat-icon>account_circle</mat-icon>
-        <a href="rôle">{{ user.role }}</a>
+        <a href="rôle">{{ user.payload.doc.data().role }}</a>
       </mat-card-subtitle>
     </mat-card-title-group>
     <mat-card-content>

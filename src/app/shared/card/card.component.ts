@@ -15,7 +15,7 @@ export class CardComponent implements OnInit {
   dialogStatus: boolean = false;
 
   @Input()
-  user: User;
+  user;
 
   constructor(public dialog: MatDialog, private listUsersService: ListUsersService) {
     // this.user = null;
@@ -24,23 +24,27 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 
-  editUser(user: User) {
+  editUser(user) {
     this.listUsersService.editUser(user);
-    this.hideDialog();
   }
 
-  showDialog(user: User) {
+  showDialog(user) {
+    console.log(user.payload.doc.data().email);
     this.dialogStatus = true;
     this.addDialog = this.dialog.open(DialogModifUserComponent, {
       width: '600px',
       data: { userObject: user }
     });
 
-    this.addDialog.afterClosed().subscribe(user => {
+    this.addDialog.afterClosed().subscribe(user1 => {
+      console.log(user1.payload.doc.data().email);
       this.dialogStatus = false;
-      if (user) {
-        this.editUser(user);
-      }
+      this.editUser(user1);
+      this.hideDialog();
+
+      // if (user) {
+      //   this.editUser(user);
+      // }
     });
   }
 

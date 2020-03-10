@@ -1,13 +1,13 @@
 <mat-card class="mat-whiteframe-2dp">
   <mat-card-title>
-    <span *ngIf="isUpdateMode">Update {{ model?.firstname }} {{ model?.lastname }}</span>
+    <span *ngIf="isUpdateMode">Modification d'un utilisateur</span>
   </mat-card-title>
 
   <mat-card-content>
     <form #f="ngForm">
       <p *ngIf="isUpdateMode">
         <mat-form-field>
-          <input [ngModel]="model.id" matInput style="width:100%" placeholder="ID (disabled)" disabled name="id" />
+          <input [ngModel]="model.payload.doc.data().id" matInput style="width:100%" placeholder="ID (disabled)" disabled name="id" />
         </mat-form-field>
       </p>
 
@@ -15,35 +15,35 @@
         <tr>
           <td>
             <mat-form-field>
-              <input [(ngModel)]="model.prenom" matInput placeholder="Prénom *" name="firstname" />
+              <input [(ngModel)]="model.payload.doc.data().prenom" matInput placeholder="Prénom *" name="prenom" />
             </mat-form-field>
             <mat-form-field>
-              <input [(ngModel)]="model.nom" matInput placeholder="Nom *" name="lastname" />
+              <input [(ngModel)]="model.payload.doc.data().nom" matInput placeholder="Nom *" name="nom" />
             </mat-form-field>
           </td>
           <td class="align-right">
-            <img width="100" src="{{ model.photo || 'https://randomuser.me/api/portraits/lego/6.jpg' }}" />
-            <input type="hidden" [(ngModel)]="model.lien_photo" name="photo" />
+            <img width="100" src="{{ model.payload.doc.data().lien_photo || 'https://randomuser.me/api/portraits/lego/6.jpg' }}" />
+            <input type="hidden" [(ngModel)]="model.payload.doc.data().lien_photo" name="lien_photo" />
           </td>
         </tr>
       </table>
 
       <p>
         <mat-form-field>
-          <input [(ngModel)]="model.email" matInput placeholder="Email *" style="width:100%" name="email" />
+          <input [(ngModel)]="model.payload.doc.data().email" matInput placeholder="Email *" style="width:100%" name="email" />
         </mat-form-field>
       </p>
 
       <p ngModelGroup="address">
         <mat-form-field>
-          <input [(ngModel)]="model.role" matInput placeholder="Rôle" style="width:100%" name="street" />
+          <input [(ngModel)]="model.payload.doc.data().role" matInput placeholder="Rôle" style="width:100%" name="role" />
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field>
           <input
-            [(ngModel)]="model.phone"
+            [(ngModel)]="model.payload.doc.data().phone"
             matInput
             placeholder="Phone * (ex: 0612345678)"
             style="width:100%"
@@ -55,7 +55,7 @@
   </mat-card-content>
 
   <mat-card-actions align="end">
-    <button mat-button type="button" (click)="cancel()">Cancel</button>
-    <button mat-button color="primary" type="submit" (click)="submit()">Save</button>
+    <button mat-button type="button" (click)="annuler()">Annuler</button>
+    <button mat-button color="primary" type="submit" (click)="enregistrer()">Enregistrer</button>
   </mat-card-actions>
 </mat-card>
