@@ -11,6 +11,12 @@ section {
   overflow: hidden;
 }
 
+button {
+  position: fixed;
+  z-index: 1;
+  bottom: 15px;
+  right: 15px;
+}
 
 .list {
   padding-bottom: 100px;
