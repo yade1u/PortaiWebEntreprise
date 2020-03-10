@@ -36,10 +36,10 @@ export class CardComponent implements OnInit {
       data: { userObject: user }
     });
 
-    this.addDialog.afterClosed().subscribe(user => {
+    this.addDialog.afterClosed().subscribe(user1 => {
       this.dialogStatus = false;
-      if (user) {
-        this.editUser(user);
+      if (user1) {
+        this.editUser(user1);
       }
     });
   }

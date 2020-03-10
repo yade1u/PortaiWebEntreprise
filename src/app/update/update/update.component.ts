@@ -2,6 +2,7 @@ import { mergeMap, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/interfaces/User';
 
 @Component({
   selector: 'app-update',
@@ -32,7 +33,7 @@ export class UpdateComponent implements OnInit {
       .subscribe((user: any) => (this.user = user));*/
   }
 
-  submit(user: any) {
+  submit(user: User) {
     // this._http.put(`${BASE_URL}/api/peoples/${person.id}`, person).subscribe(() => this._router.navigate(['/people']));
   }
 

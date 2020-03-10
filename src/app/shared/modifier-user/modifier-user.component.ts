@@ -34,11 +34,11 @@ export class ModifierUserComponent implements OnInit {
       this.isUpdateMode = Boolean(this.model);
     }
   }
-  cancel() {
+  annuler() {
     this.cancel$.emit();
   }
 
-  submit() {
+  enregistrer() {
     this.submit$.emit(this.model);
   }
 

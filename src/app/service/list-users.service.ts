@@ -33,9 +33,9 @@ export class ListUsersService {
     // return this.afs.doc<User>('users/oSkcQoFhSJQ9LRYspyFAae2HaX42').valueChanges();
   }
 
-  public editUser(user: User)
-  {
-    console.log("I am here");
+  public editUser(user: User) {
+    this.afs.collection<User>('users').doc(user.uid).set(user);
+    // console.log('Je suis dans Edit user' + user.uid);
   }
 
 }

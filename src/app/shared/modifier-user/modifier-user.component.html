@@ -7,7 +7,7 @@
     <form #f="ngForm">
       <p *ngIf="isUpdateMode">
         <mat-form-field>
-          <input [ngModel]="model.id" matInput style="width:100%" placeholder="ID (disabled)" disabled name="id" />
+          <input [ngModel]="model.uid" matInput style="width:100%" placeholder="ID (disabled)" disabled name="uid" />
         </mat-form-field>
       </p>
 
@@ -15,15 +15,15 @@
         <tr>
           <td>
             <mat-form-field>
-              <input [(ngModel)]="model.prenom" matInput placeholder="Prénom *" name="firstname" />
+              <input [(ngModel)]="model.prenom" matInput placeholder="Prénom *" name="prenom" />
             </mat-form-field>
             <mat-form-field>
-              <input [(ngModel)]="model.nom" matInput placeholder="Nom *" name="lastname" />
+              <input [(ngModel)]="model.nom" matInput placeholder="Nom *" name="nom" />
             </mat-form-field>
           </td>
           <td class="align-right">
-            <img width="100" src="{{ model.photo || 'https://randomuser.me/api/portraits/lego/6.jpg' }}" />
-            <input type="hidden" [(ngModel)]="model.lien_photo" name="photo" />
+            <img width="100" src="{{ model.lient_photo || 'https://randomuser.me/api/portraits/lego/6.jpg' }}" />
+            <input type="hidden" [(ngModel)]="model.lien_photo" name="lien_photo" />
           </td>
         </tr>
       </table>
@@ -36,7 +36,7 @@
 
       <p ngModelGroup="address">
         <mat-form-field>
-          <input [(ngModel)]="model.role" matInput placeholder="Rôle" style="width:100%" name="street" />
+          <input [(ngModel)]="model.role" matInput placeholder="Rôle" style="width:100%" name="role" />
         </mat-form-field>
       </p>
 
@@ -55,7 +55,7 @@
   </mat-card-content>
 
   <mat-card-actions align="end">
-    <button mat-button type="button" (click)="cancel()">Cancel</button>
-    <button mat-button color="primary" type="submit" (click)="submit()">Save</button>
+    <button mat-button type="button" (click)="annuler()">Annuler</button>
+    <button mat-button color="primary" type="submit" (click)="enregistrer()">Enregistrer</button>
   </mat-card-actions>
 </mat-card>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
@@ -8,9 +9,20 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class DialogModifUserComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(public dialogRef: MatDialogRef<DialogModifUserComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  ngOnInit() {
+  closeDialog(result = null) {
+    this.dialogRef.close(result);
+  }
+
+  ngOnInit() {}
+
+  onCancel() {
+    this.closeDialog();
+  }
+
+  onSave(user) {
+    this.closeDialog(user);
   }
 
 }
