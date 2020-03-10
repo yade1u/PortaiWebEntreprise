@@ -17,12 +17,10 @@ export class ListUsersService {
   private users: Observable<User[]>;
   uid: string;
 
-  constructor(private afs: AngularFirestore, private auth: AuthentificationService) {
-    this.users = this.afs.collection<User>('users').valueChanges();
-  }
+  constructor(private afs: AngularFirestore, private auth: AuthentificationService) { }
 
   public getAllUser(): Observable<User[]> {
-    return this.users;
+    return this.afs.collection<User>('users').valueChanges();
   }
 
   public getUserConnecte(): Observable<User> {

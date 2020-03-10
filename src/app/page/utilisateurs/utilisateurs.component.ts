@@ -12,16 +12,14 @@ import { AddDialogComponent } from '../dialogues/add-dialog/add-dialog.component
 export class UtilisateursComponent implements OnInit {
   users: User[];
 
-  constructor(private listUsersService: ListUsersService) {
-  }
-
-  getUsers(): void {
-  }
+  constructor(private listUsersService: ListUsersService) {}
 
   ngOnInit() {
     this.listUsersService.getAllUser().subscribe(
       (utilisateurs) => {
         this.users = utilisateurs;
+
+        console.log("ICICCI\n"+this.users);
       }
     );
   }
