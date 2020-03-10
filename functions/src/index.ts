@@ -14,13 +14,12 @@ exports.triggerUser = functions.auth.user().onCreate((user) => {
   return admin
     .firestore()
     .collection('/users/').doc(user.uid).set({
+      uid: user.uid,
       email: user.email,
-      firstName:'',
-      lastName:'',
+      prenom:'',
+      nom:'',
       phone:'',
-      photo:'',
-      role:'',
-      team:'',
-
+      lien_photo:'',
+      role:''
     });
 });

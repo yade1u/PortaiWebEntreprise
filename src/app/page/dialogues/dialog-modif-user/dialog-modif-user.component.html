@@ -1,1 +1,1 @@
-<app-modifier-user [model]='data.userObject'></app-modifier-user>
+<app-modifier-user [model]='data.userObject' (submit)="onSave($event)" (cancel)="onCancel()"></app-modifier-user>
