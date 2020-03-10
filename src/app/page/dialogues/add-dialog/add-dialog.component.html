@@ -1,1 +1,1 @@
-<app-formulaire (submit)="onSave($event)" (cancel)="onCancel()"></app-formulaire>
+<app-formulaire [model]='data.actu' [isUpdateMode]='data.isUpdateMode' (submit)="onSave($event)" (cancel)="onCancel()"></app-formulaire>

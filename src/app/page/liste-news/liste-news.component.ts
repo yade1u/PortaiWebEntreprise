@@ -3,6 +3,7 @@ import { Actualite } from 'src/app/interfaces/Actualite';
 import { RecupeNewsService } from 'src/app/service/recupe-news.service';
 import { AddDialogComponent } from '../dialogues/add-dialog/add-dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FormulaireComponent } from 'src/app/shared/formulaire/formulaire.component';
 
 @Component({
   selector: 'app-liste-news',
@@ -43,7 +44,7 @@ export class ListeNewsComponent implements OnInit {
     this.dialogStatus = 'active';
     this.addDialog = this.dialog.open(AddDialogComponent, {
       width: '600px',
-      data: {}
+      data: {isUpdateMode: false}
     });
 
     this.addDialog.afterClosed().subscribe(actualite => {
