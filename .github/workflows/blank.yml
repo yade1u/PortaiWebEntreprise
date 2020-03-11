@@ -22,5 +22,5 @@ jobs:
       run: npm run lint
     - name: Build
       run: npm run build -- --prod
-    - name: Deploy
-      run: firebase deploy
+#    - name: Deploy
+#      run: firebase deploy
