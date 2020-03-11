@@ -7,7 +7,7 @@ import { Component, OnInit, Output, Input, EventEmitter, OnChanges } from '@angu
 })
 export class FormulaireComponent implements OnInit, OnChanges {
   @Input() model: any;
-  @Input()isUpdateMode: boolean;
+  @Input()isUpdateMode: any;
 
   @Output('cancel') cancel$: EventEmitter<any>;
   @Output('submit') submit$: EventEmitter<any>;

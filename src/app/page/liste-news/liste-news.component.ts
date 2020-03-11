@@ -57,7 +57,7 @@ export class ListeNewsComponent implements OnInit {
     this.dialogStatus = 'active';
     this.addDialog = this.dialog.open(AddDialogComponent, {
       width: '600px',
-      data: {isUpdateMode: false, actu: actual}
+      data: {isUpdateMode: 2, actu: actual}
     });
 
     this.addDialog.afterClosed().subscribe(actualite => {

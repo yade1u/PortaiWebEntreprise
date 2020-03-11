@@ -29,7 +29,7 @@ export class NewsComponent implements OnInit {
     };*/
   }
 
-  delete(actualite) {
+  afficher(actualite) {
 
   }
 
@@ -49,7 +49,22 @@ export class NewsComponent implements OnInit {
     this.dialogStatus = 'active';
     this.addDialog = this.dialog.open(AddDialogComponent, {
       width: '600px',
-      data: {isUpdateMode: true, actu: actualite}
+      data: {isUpdateMode: 1, actu: actualite}
+    });
+
+    this.addDialog.afterClosed().subscribe(actualite1 => {
+      this.dialogStatus = 'inactive';
+      if (actualite1) {
+        this.modif(actualite1);
+      }
+    });
+  }
+
+  showDialog1(actualite: Actualite) {
+    this.dialogStatus = 'active';
+    this.addDialog = this.dialog.open(AddDialogComponent, {
+      width: '600px',
+      data: {isUpdateMode: 3, actu: actualite}
     });
 
     this.addDialog.afterClosed().subscribe(actualite1 => {
