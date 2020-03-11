@@ -38,6 +38,7 @@ import { CardComponent } from './shared/card/card.component';
 import { DialogModifUserComponent } from './page/dialogues/dialog-modif-user/dialog-modif-user.component';
 import { ModifierUserComponent } from './shared/modifier-user/modifier-user.component';
 import { UpdateComponent } from './update/update/update.component';
+import { LireNewsComponent } from './page/lire-news/lire-news.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { UpdateComponent } from './update/update/update.component';
     CardComponent,
     DialogModifUserComponent,
     ModifierUserComponent,
-    UpdateComponent
+    UpdateComponent,
+    LireNewsComponent
   ],
   imports: [
     BrowserModule,

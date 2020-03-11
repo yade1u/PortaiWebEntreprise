@@ -14,13 +14,26 @@
   </mat-card-title-group>
 
   <mat-card-content>
-    <div [innerHTML]='actualite.contenuHTML'></div>
+    <div [innerHTML]='actualite.contenuHTML.substring(0,350)+" ..."'></div>
     <div class="but">
-      <a mat-button (click)="showDialog(actualite)" *ngIf="dialogStatus == 'inactive' && currentRole === rolesInterface.Admin" >
-        <mat-icon>create</mat-icon>
-      </a>
-      <a mat-button title="Delete" (click)="delete(actualite)" *ngIf="currentRole === rolesInterface.Admin"> <mat-icon>delete</mat-icon> </a>
+      <button
+        style="float: right; margin: 10px;"
+        mat-button
+        titre="Modifier"
+        (click)="showDialog(actualite)"
+        *ngIf="dialogStatus == 'inactive' && currentRole === rolesInterface.Admin">
+        <i class="material-icons">create</i>
+      </button>
+      <button
+        style="margin: 10px;"
+        mat-button
+        title="Lire la suite"
+        (click)="showDialog1(actualite)">
+        <i class="material-icons">open_in_new</i>
+      </button>
+
     </div>
+
   </mat-card-content>
 
 </mat-card>

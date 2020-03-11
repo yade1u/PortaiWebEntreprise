@@ -14,6 +14,7 @@ import { pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { customClaims } from '@angular/fire/auth-guard';
 import { UpdateComponent } from './update/update/update.component';
+import { LireNewsComponent } from './page/lire-news/lire-news.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
@@ -63,6 +64,13 @@ export const routes: Routes = [
   {
     path: 'actualites',
     component: ListeNewsComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
+  },
+
+  {
+    path: 'actualite/:titre',
+    component: LireNewsComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
