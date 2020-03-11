@@ -12,5 +12,7 @@
 
     <button mat-flat-button [disabled]="loginForm.invalid">Connexion<mat-icon>send</mat-icon></button>
 
+    <div *ngIf="test==false" style="margin-top: 15px; color: brown; align-self: center; font-weight: bold;">Login ou mot de passe pas valide</div>
+
   </form>
 </div>
