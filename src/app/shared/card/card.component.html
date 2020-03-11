@@ -29,7 +29,9 @@
     </mat-card-title-group>
     <mat-card-content>
       <div class="buttons-info">
-        <a mat-button title="Edit" (click)="showDialog(user)"> <mat-icon>create</mat-icon> </a>
+        <a mat-button title="Edit" (click)="showDialog(user)" *ngIf="currentRole === rolesInterface.Admin || (currentRole === rolesInterface.Employe && isCurrentUser())">
+          <mat-icon>create</mat-icon>
+        </a>
       </div>
     </mat-card-content>
   </mat-card>

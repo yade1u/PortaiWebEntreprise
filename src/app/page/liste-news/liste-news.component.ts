@@ -4,6 +4,9 @@ import { RecupeNewsService } from 'src/app/service/recupe-news.service';
 import { AddDialogComponent } from '../dialogues/add-dialog/add-dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormulaireComponent } from 'src/app/shared/formulaire/formulaire.component';
+import { User } from 'src/app/interfaces/User';
+import { ListUsersService } from 'src/app/service/list-users.service';
+import { RoleUser } from 'src/app/interfaces/rolesUser';
 
 @Component({
   selector: 'app-liste-news',
@@ -14,11 +17,13 @@ export class ListeNewsComponent implements OnInit {
 
   actualites: Actualite[];
   actualite: Actualite;
+  currentRole: string;
+  rolesInterface = RoleUser;
 
   private addDialog: MatDialogRef<AddDialogComponent>;
   dialogStatus = 'inactive';
 
-  constructor(private actuService: RecupeNewsService, public dialog: MatDialog) { }
+  constructor(private actuService: RecupeNewsService, public dialog: MatDialog, private listUsersService: ListUsersService) { }
 
   ngOnInit() {
     this.actualite = {
@@ -30,9 +35,10 @@ export class ListeNewsComponent implements OnInit {
     this.actuService.getAllActualites().subscribe(
       (actus) => {
         this.actualites = actus;
-        console.log(this.actualites);
       }
     );
+
+    this.currentRole = this.listUsersService.giveCurrentRole();
   }
 
   add(actualite: Actualite) {

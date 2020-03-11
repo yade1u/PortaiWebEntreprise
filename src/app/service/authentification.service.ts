@@ -16,16 +16,19 @@ export class AuthentificationService {
 
   constructor(private afas: AngularFireAuth, private router: Router) {
     this.userData = afas.authState;
-   }
+  }
+
+  isLoggedIn(): boolean {
+    return this.afas.user !== null;
+  }
 
   signInUser(email: string, password: string) {
     this.afas.auth.signInWithEmailAndPassword(email, password).then(
       res => {
         this.router.navigate(['dashboard']);
         console.log('You are Successfully logged in!');
-        console.log(res.user.uid);
         this.idUser = res.user.uid;
-
+        localStorage.setItem('currentUID', res.user.uid);
       })
       .catch(err => {
         console.log('Something is wrong:', err.message);

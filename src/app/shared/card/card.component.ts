@@ -3,6 +3,7 @@ import { User } from 'src/app/interfaces/User';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogModifUserComponent } from '../../page/dialogues/dialog-modif-user/dialog-modif-user.component';
 import { ListUsersService } from 'src/app/service/list-users.service';
+import { RoleUser } from '../../interfaces/rolesUser';
 
 @Component({
   selector: 'app-card',
@@ -16,13 +17,15 @@ export class CardComponent implements OnInit {
 
   @Input()
   user: User;
+  @Input() currentRole: string;
+  rolesInterface = RoleUser;
 
-  constructor(public dialog: MatDialog, private listUsersService: ListUsersService) {
-    // this.user = null;
-  }
+
+  constructor(public dialog: MatDialog, private listUsersService: ListUsersService) { }
 
   ngOnInit() {
   }
+
 
   editUser(user: User) {
     this.listUsersService.editUser(user);
@@ -47,6 +50,10 @@ export class CardComponent implements OnInit {
   hideDialog() {
     this.dialogStatus = false;
     this.addDialog.close();
+  }
+
+  isCurrentUser(): boolean {
+    return this.user.uid === localStorage.getItem('currentUID');
   }
 
 }
