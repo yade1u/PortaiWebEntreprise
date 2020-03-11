@@ -22,18 +22,8 @@ export class AuthentificationService {
     return this.afas.user !== null;
   }
 
-  signInUser(email: string, password: string) {
-    this.afas.auth.signInWithEmailAndPassword(email, password).then(
-      res => {
-        this.router.navigate(['dashboard']);
-        console.log('You are Successfully logged in!');
-        this.idUser = res.user.uid;
-        localStorage.setItem('currentUID', res.user.uid);
-      })
-      .catch(err => {
-        console.log('Something is wrong:', err.message);
-    }
-    );
+  signInUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
+    return this.afas.auth.signInWithEmailAndPassword(email, password).then();
   }
 
   signOutUser() {
