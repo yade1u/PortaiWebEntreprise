@@ -3,6 +3,7 @@ import { Actualite } from 'src/app/interfaces/Actualite';
 import { AddDialogComponent } from '../dialogues/add-dialog/add-dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormulaireComponent } from 'src/app/shared/formulaire/formulaire.component';
+import { RoleUser } from '../../interfaces/rolesUser';
 
 @Component({
   selector: 'app-news',
@@ -13,6 +14,8 @@ export class NewsComponent implements OnInit {
 
   @Input()
   actualite: Actualite;
+  @Input() currentRole: string;
+  rolesInterface = RoleUser;
 
   private addDialog: MatDialogRef<AddDialogComponent>;
   dialogStatus = 'inactive';

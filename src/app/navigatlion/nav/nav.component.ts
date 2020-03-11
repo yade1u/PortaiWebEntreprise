@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   // email: string;
+  @Input() currentUserName: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -29,13 +30,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.isAuth = this.authService.estConnecte();
-   /* this.authService.afas.user.subscribe(
-      (user) => {
-        this.email = user.email;
-      }
-    );*/
-    // console.log('Connecté ou pas ? -> ' + this.isAuth);*/
+    this.currentUserName = localStorage.getItem('currentUserName');
   }
 
 }
